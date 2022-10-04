@@ -84,7 +84,7 @@ class auth_plugin_samlidp extends auth_plugin_base {
             $uid = $user->id;
             if ($cookieName && isset($cookieName{'cookie_name'}) && $cookieName{'cookie_name'}) {
                 $salt = $sspConfig->getValue('secretsalt');
-                setcookie($cookieName{'cookie_name'}, hash_hmac('sha1', $salt.$uid, $salt).':'.$uid, 0, $sspConfig->getValue('session.cookie.path'));
+                setcookie($cookieName{'cookie_name'}, hash_hmac('sha1', $salt.$uid, $salt).':'.$uid, 0, $sspConfig->getValue('session.cookie.path'), $sspConfig->getValue('session.cookie.domain'));
             } else {
                 $this->report_misconfigured_authsouces();
             }
